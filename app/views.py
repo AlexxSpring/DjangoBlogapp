@@ -1,17 +1,21 @@
-from django.shortcuts import render, HttpResponse
-
 # Create your views here.
 
-def home(request):
-    # return HttpResponse("Hello World")
-    return render(request, "home.html")
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import IsAuthenticated
 
-def about(request):
-    # return HttpResponse("This is the about page")
-    return render(request, "about.html")
+from .models import Post
+from .serializers import PostSerializer
+from .permissions import IsAuthorOrReadOnly
 
-def contact(request):
-    return HttpResponse("This is the contact page")
+
+class PostViewSet(ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+    permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
 
 
 
