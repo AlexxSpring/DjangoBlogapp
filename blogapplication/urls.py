@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from app.views import home_page, login_page, signup_page, create_post_page, detail_page
+from app.views import home_page, login_page, signup_page, create_post_page, detail_page, logout_page
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -16,6 +16,7 @@ urlpatterns = [
     path('signup/', signup_page, name='signup'),
     path('create/', create_post_page, name='create_post'),
     path('post/<int:id>/', detail_page, name='detail'),
+    path('logout/', logout_page, name='logout'),
 
     # Blog API
     path('api/', include('app.urls')),
