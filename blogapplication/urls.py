@@ -17,6 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+# Added Manually from StackOverflow
+
+from django.contrib import admin
+
+admin.site.site_header = 'BlogApp Admin Panel'     # default: "Django Administration"
+admin.site.index_title = 'BlogApp'                 # default: "Site administration"
+admin.site.site_title = 'MyBlogApp adminsitration' # default: "Django site admin"
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
