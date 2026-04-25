@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Create Post{% endblock %}
+{% block title %}Edit Post{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
@@ -8,29 +8,30 @@
 <div class="card border-0 shadow-lg rounded-4 p-4">
 <div class="card-body">
 
-<h2 class="text-center fw-bold mb-4">Create New Post 📝</h2>
+<h2 class="text-center fw-bold mb-4">Edit Post ✏️</h2>
 
 <form method="POST" enctype="multipart/form-data">
 {% csrf_token %}
 
 <div class="mb-3">
 <label>Title</label>
-<input type="text" name="title" class="form-control rounded-3 py-2" required>
+<input type="text" name="title" value="{{ post.title }}" class="form-control rounded-3">
 </div>
 
 <div class="mb-3">
 <label>Content</label>
-<textarea name="content" rows="6" class="form-control rounded-3"></textarea>
+<textarea name="content" rows="6" class="form-control rounded-3">{{ post.content }}</textarea>
 </div>
 
 <div class="mb-3">
-<label>Upload Image</label>
+<label>New Image (optional)</label>
 <input type="file" name="image" class="form-control rounded-3">
 </div>
 
-<button class="btn btn-primary w-100 rounded-pill py-2">
-Publish Post
+<button class="btn btn-warning w-100 rounded-pill">
+Update Post
 </button>
+
 </form>
 
 </div>

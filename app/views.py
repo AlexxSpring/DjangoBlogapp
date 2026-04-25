@@ -12,6 +12,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -95,4 +96,27 @@ def detail_page(request, id):
 
 def logout_page(request):
     logout(request)
+    return redirect('home')
+
+@login_required
+def edit_post_page(request, id):
+    post = get_object_or_404(Post, id=id, author=request.user)
+
+    if request.method == "POST":
+        post.title = request.POST['title']
+        post.content = request.POST['content']
+
+        if request.FILES.get('image'):
+            post.image = request.FILES.get('image')
+
+        post.save()
+        return redirect('detail', id=post.id)
+
+    return render(request, 'edit.html', {'post': post})
+
+
+@login_required
+def delete_post_page(request, id):
+    post = get_object_or_404(Post, id=id, author=request.user)
+    post.delete()
     return redirect('home')

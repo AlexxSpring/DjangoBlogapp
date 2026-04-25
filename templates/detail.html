@@ -1,51 +1,43 @@
 {% extends 'base.html' %}
-
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-
 <div class="row justify-content-center">
-    <div class="col-md-8">
+<div class="col-lg-8">
 
-        <div class="card shadow border-0">
+<div class="card border-0 shadow-lg rounded-4 overflow-hidden">
 
-            {% if post.image %}
-            <img src="{{ post.image.url }}" class="card-img-top">
-            {% endif %}
+{% if post.image %}
+<img src="{{ post.image.url }}" style="height:420px; object-fit:cover;">
+{% endif %}
 
-            <div class="card-body p-4">
+<div class="card-body p-5">
 
-                <h1 class="fw-bold mb-3">{{ post.title }}</h1>
+<h1 class="fw-bold mb-3">{{ post.title }}</h1>
 
-                <p class="text-muted mb-3">
-                    By {{ post.author.username }} |
-                    {{ post.created_at|date:"d M Y, h:i A" }}
-                </p>
+<p class="text-muted mb-4">
+By {{ post.author.username }} • {{ post.created_at|date:"d M Y, h:i A" }}
+</p>
 
-                <hr>
+<p style="line-height:1.9; font-size:1.08rem;">
+{{ post.content }}
+</p>
 
-                <p style="line-height: 1.8;">
-                    {{ post.content }}
-                </p>
+{% if user == post.author %}
+<div class="mt-4">
+<a href="/edit/{{ post.id }}/" class="btn btn-warning rounded-pill px-4">Edit</a>
+<a href="/delete/{{ post.id }}/" class="btn btn-danger rounded-pill px-4"
+onclick="return confirm('Delete this post?')">Delete</a>
+</div>
+{% endif %}
 
-                {% if user == post.author %}
-                <div class="mt-4">
-                    <a href="/edit/{{ post.id }}/" class="btn btn-warning">Edit</a>
-                    <a href="/delete/{{ post.id }}/" class="btn btn-danger"
-                    onclick="return confirm('Delete this post?')">
-                    Delete
-                    </a>
-                </div>
-                {% endif %}
+<a href="/" class="btn btn-outline-primary rounded-pill mt-4 px-4">
+← Back Home
+</a>
 
-                <a href="/" class="btn btn-outline-primary mt-3">
-                    ← Back to Home
-                </a>
-
-            </div>
-        </div>
-
-    </div>
+</div>
 </div>
 
+</div>
+</div>
 {% endblock %}

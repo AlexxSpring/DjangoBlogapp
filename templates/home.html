@@ -16,7 +16,8 @@
 <div class="card border-0 shadow-sm h-100 post-card">
 
 {% if post.image %}
-<img src="{{ post.image.url }}" class="card-img-top post-img">
+<img src="{{ post.image.url }}" class="card-img-top post-img"
+     onerror="this.src='https://picsum.photos/500/300?random={{ post.id }}'">
 {% else %}
 <img src="https://picsum.photos/500/300?random={{ post.id }}" class="card-img-top post-img">
 {% endif %}
@@ -57,8 +58,11 @@ Read More →
 
 .post-img{
     height:230px;
+    width:100%;
     object-fit:cover;
+    display:block;
 }
+
 </style>
 
 {% endblock %}

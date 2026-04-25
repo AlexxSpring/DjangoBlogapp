@@ -1,53 +1,55 @@
 {% extends 'base.html' %}
-
 {% block title %}Signup{% endblock %}
 
 {% block content %}
-
 <div class="row justify-content-center">
-    <div class="col-md-6">
+<div class="col-md-6">
 
-        <div class="card shadow border-0">
-            <div class="card-body p-4">
+<div class="card border-0 shadow-lg rounded-4 p-4">
+<div class="card-body">
 
-                <h2 class="text-center fw-bold mb-4">Create Account</h2>
+<h2 class="text-center fw-bold mb-4">Create Account ✨</h2>
 
-                <form method="POST">
-                    {% csrf_token %}
+<form method="POST">
+{% csrf_token %}
 
-                    <div class="mb-3">
-                        <label class="form-label">Username</label>
-                        <input type="text" name="username" class="form-control" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" name="email" class="form-control" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Password</label>
-                        <input type="password" name="password1" class="form-control" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Confirm Password</label>
-                        <input type="password" name="password2" class="form-control" required>
-                    </div>
-
-                    <button type="submit" class="btn btn-success w-100">
-                        Signup
-                    </button>
-                </form>
-
-                {% if error %}
-                <p class="text-danger mt-3 text-center">{{ error }}</p>
-                {% endif %}
-
-            </div>
-        </div>
-
-    </div>
+<div class="mb-3">
+<label>Username</label>
+<input type="text" name="username" class="form-control rounded-3 py-2" required>
 </div>
 
+<div class="mb-3">
+<label>Email</label>
+<input type="email" name="email" class="form-control rounded-3 py-2" required>
+</div>
+
+<div class="mb-3">
+<label>Password</label>
+<input type="password" name="password1" class="form-control rounded-3 py-2" required>
+</div>
+
+<div class="mb-3">
+<label>Confirm Password</label>
+<input type="password" name="password2" class="form-control rounded-3 py-2" required>
+</div>
+
+<button class="btn btn-success w-100 rounded-pill py-2">
+Signup
+</button>
+</form>
+
+{% if error %}
+<p class="text-danger text-center mt-3">{{ error }}</p>
+{% endif %}
+
+<p class="text-center mt-4">
+Already have an account?
+<a href="/login/">Login</a>
+</p>
+
+</div>
+</div>
+
+</div>
+</div>
 {% endblock %}
