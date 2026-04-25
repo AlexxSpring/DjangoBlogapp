@@ -73,3 +73,16 @@ def signup_page(request):
         return redirect('login')
 
     return render(request, 'signup.html')
+
+
+def create_post_page(request):
+    if request.method == "POST":
+        Post.objects.create(
+            title=request.POST['title'],
+            content=request.POST['content'],
+            image=request.FILES.get('image'),
+            author=request.user
+        )
+        return redirect('home')
+
+    return render(request, 'create_post.html')
