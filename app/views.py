@@ -10,7 +10,8 @@ from .models import Post
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
-
+from django.shortcuts import get_object_or_404
+from django.contrib.auth import logout
 
 
 # Create your views here.
@@ -86,3 +87,12 @@ def create_post_page(request):
         return redirect('home')
 
     return render(request, 'create_post.html')
+
+
+def detail_page(request, id):
+    post = get_object_or_404(Post, id=id)
+    return render(request, 'detail.html', {'post': post})
+
+def logout_page(request):
+    logout(request)
+    return redirect('home')
