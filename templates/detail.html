@@ -28,6 +28,16 @@
                     {{ post.content }}
                 </p>
 
+                {% if user == post.author %}
+                <div class="mt-4">
+                    <a href="/edit/{{ post.id }}/" class="btn btn-warning">Edit</a>
+                    <a href="/delete/{{ post.id }}/" class="btn btn-danger"
+                    onclick="return confirm('Delete this post?')">
+                    Delete
+                    </a>
+                </div>
+                {% endif %}
+
                 <a href="/" class="btn btn-outline-primary mt-3">
                     ← Back to Home
                 </a>
