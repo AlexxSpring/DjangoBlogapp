@@ -25,7 +25,15 @@ SECRET_KEY = 'django-insecure-!p!b=fkx&%vignc1fh%$%rtf6$snzs$)36arbz6mb8@l8tnz$*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'djangoblogapp-production.up.railway.app',
+    'localhost',
+    '127.0.0.1',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://djangoblogapp-production.up.railway.app',
+]
 
 
 # Application definition
